@@ -120,7 +120,7 @@ def buy():
         db.execute("UPDATE users SET cash = cash - :c WHERE id = :id", c=cart_value, id=session["user_id"])
         # update the use information history of purchase
         db.execute("INSERT INTO purchase(id, name, symbol, price, number) VALUES(:id, :name, :symbol, :price, :number)",
-                    id=session["user_id"], name=share["name"], symbol=share["symbol"], price=share["price"], number=num_shares)
+                   id=session["user_id"], name=share["name"], symbol=share["symbol"], price=share["price"], number=num_shares)
         
         # flash message bought stocks
         flash("Stocks Bought:)")
@@ -387,9 +387,9 @@ def sell():
         stock = lookup(symbol)
         # update the users and purchase database
         db.execute("INSERT INTO purchase(id, name, symbol, price, number) VALUES(:id, :name, :symbol, :price, :number)",
-                    id=session["user_id"], name=stock["name"], symbol=symbol, price=stock["price"], number=(-share_sell))
+                   id=session["user_id"], name=stock["name"], symbol=symbol, price=stock["price"], number=(-share_sell))
         db.execute("UPDATE users SET cash = cash + :amount WHERE id = :id",
-                    amount=(share_sell*stock["price"]), id=session["user_id"])
+                   amount=(share_sell*stock["price"]), id=session["user_id"])
         # flash a message Sold
         flash("Sold!!!")
         # redirect user to home page
