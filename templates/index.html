@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class = "table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+                <th></th><th></th>
+            </tr>
+        </thead>
+            <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{row["symbol"]}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.shares}}</td>
+                    <td>{{row.price}}</td>
+                    <td>{{row.total}}</td>
+                    <td><a href = "{{url_for("buy", symbol_buy=row.symbol)}}">BUY</a></td>
+                    <td><a href = "{{url_for("sell", symbol_sell=row.symbol)}}">SELL</a></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td><td></td><td></td>
+                <td>{{cash}}</td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td>
+                <th>{{total}}</th>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

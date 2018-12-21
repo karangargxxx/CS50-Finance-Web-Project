@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action = "/sell" method = "POST">
+        <div class = "form form-group">
+            <select name = "symbol" required>
+                <option {{html}} >{{name}}</option>
+                {% for i in range(symbols|length) %}
+                    <option value = "{{symbols[i]["symbol"]}}">{{symbols[i]["symbol"]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class = "form form-group">
+            <input name = "shares" type = "number" placeholder = "Shares" min = 1 step = 1 autocomplete = "off" class = "form-control"/>
+        </div>
+        <button class = "btn btn-primary" type = "submit">Sell</button>
+    </form>
+{% endblock %}
